@@ -6,12 +6,16 @@
   "scripts": {
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
-    "prisma:generate": "prisma generate",
-    "prisma:push": "prisma db push",
+    "prisma:generate": "prisma generate --schema=../prisma/schema.prisma",
+    "prisma:push": "prisma db push --schema=../prisma/schema.prisma",
+    "prisma:validate": "prisma validate --schema=../prisma/schema.prisma",
     "prisma:seed": "node src/prisma/seed.js",
-    "setup": "prisma generate && prisma db push && node src/prisma/seed.js",
+    "setup": "prisma generate --schema=../prisma/schema.prisma && prisma db push --schema=../prisma/schema.prisma && node src/prisma/seed.js",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "ci": "npm test && npm run prisma:validate",
+    "ci:full": "npm run ci && cd ../client && npm run build && npm test",
+    "ci:e2e": "cd ../client && npm run build && npx playwright test"
   },
   "dependencies": {
     "@prisma/client": "^6.5.0",

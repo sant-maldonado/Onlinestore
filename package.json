@@ -21,6 +21,9 @@
     "stripe": "^17.6.0",
     "zod": "^3.24.2"
   },
+  "overrides": {
+    "cloudinary": "$cloudinary"
+  },
   "devDependencies": {
     "prisma": "^6.5.0"
   }
